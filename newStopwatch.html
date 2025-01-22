@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+
+
+        }
+        .container{
+            height: 100vh;
+            width: 100vw;
+            background-color: #000;
+            color: #fff;
+
+        }
+        #watch{
+            height: 60%;
+            width: 100%;
+            font-size: 12vw;
+            text-align: center;
+            text-justify: auto;
+            padding-top: 5%;
+            /* color: rgb(185, 182, 182); */
+
+            /* border: 1px solid gray; */
+           
+
+        }
+        .buttons{
+            height: 40%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 5vw;
+            /* align-items: center; */
+            
+        }
+        .buttons button{
+            height: 5vh;
+            width: 10vw;
+            background-color: #fff;
+            color: #000;
+            /* border: 1px solid black; */
+            border-radius: 0.5rem;
+            font-size: 1.5vw;
+
+        }
+        .header{
+            text-align: end;
+            color: #858383;
+            padding-top: 3vw;  
+            padding-right: 3vw; 
+            margin-bottom: 1vw; 
+        }
+        .header1{
+            text-align: end;
+            color: #858383;
+            padding-right: 3vw;  
+        }
+        span{
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="header">@Powered by <span>SUKHWINDER SINGH BHATTI</span></p>  
+        <p class="header1">E.mail:<span>sukhwinder6127@gmail.com</span></p>  
+        <div id="watch">00:00:00:000</div>
+        <div class="buttons">
+            <button id="reset">RESET</button>
+            <button id="start">START</button>
+            <button id="stop">STOP</button> 
+            
+        </div>
+        
+    </div>
+    <script>
+        
+        let resetBtn= document.getElementById("reset");
+        let startBtn= document.getElementById("start");
+        let stopBtn= document.getElementById("stop");
+        let hour=0;
+        let min=0;
+        let sec=0;
+        let millisec=0;
+
+        startBtn.addEventListener('click', function(){
+            timer=true;
+            stopwatch();
+            
+            
+        });
+        stopBtn.addEventListener('click', function(){
+            timer=false;
+            
+        });
+        resetBtn.addEventListener('click', function(){
+            timer=false;
+            hour=0;
+            min=0;
+            sec=0;
+            millisec=0;
+            
+            document.getElementById("watch").innerHTML="00:00:00:00";
+            
+        });
+
+        function stopwatch(){
+            // let timer=true;
+            if(timer){
+
+            
+
+            millisec++;
+            if(millisec==100){
+                sec++;
+                millisec=0;
+            }
+            if(sec==60){
+                min++;
+                sec=0;
+                millisec=0;
+            }
+            if(min==60){
+                hour++;
+                min=0;
+                sec=0;
+                millisec=0;
+            }
+            let sec1=sec;
+            let min1=min;
+            let hour1=hour;
+            let millisec1=millisec;
+        if(sec<10){
+            sec1="0"+sec;
+        }
+
+        if(min<10){
+            min1="0"+min;
+        }
+        if(hour<10){
+            hour1="0"+hour;
+        }
+        if(millisec<10){
+            millisec1="0"+millisec;
+        }
+        
+        // }else if(millisec<100){
+        //     millisec1="0"+millisec;
+
+        // }
+            // document.getElementById("watch").innerHTML=hour+":"+min+":"+sec+":"+millisec;
+            document.getElementById("watch").innerHTML=hour1+":"+min1+":"+sec1+":"+millisec1;
+            setTimeout(stopwatch,10);
+            
+        }
+
+    }
+        
+        
+
+    </script>
+</body>
+</html>
